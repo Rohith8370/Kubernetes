@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: pod
+metadata: name
+spec: 
+  containers:
+   - name: rk
+     image: nginx:1.27 
