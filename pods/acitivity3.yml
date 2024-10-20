@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: activity2
+spec: 
+  containers:
+    - name: web
+      image: nginx:1.27
+    - name: app
+      image: alpine
+      args:
+        - sleep
+        - 10s
+        
