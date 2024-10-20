@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: activity5
+spec:
+  containers:
+    - name: test
+      image: alpine
+      args:
+        - sleep
+        - 1d
+      env:
+        - name: UserName
+          value: Admin
+        - name: Password
+          value: Admin@123
+      
