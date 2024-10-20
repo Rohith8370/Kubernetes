@@ -12,7 +12,8 @@ spec:
       args:
         - sleep
         - 1d
-  init containers:
+  initContainers:
+    
     - name: alpine1
       image: alpine
       args:
