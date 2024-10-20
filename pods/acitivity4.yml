@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: activity4
+spec: 
+  containers:
+    - name: web
+      image: nginx:1.27
+    - name: app
+      image: alpine
+      args:
+        - sleep
+        - 1d
+  init containers:
+    - name: alpine1
+      image: alpine
+      args:
+        - sleep
+        - 10s
+    - name: alpine2
+      image: alpine
+      args:
+        - sleep
+        - 10s
+    
