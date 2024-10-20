@@ -3,14 +3,14 @@ apiVersion: v1
 kind: Pod
 metadata: 
   name: activity5
-  lables: 
+  labels: 
     env: dev 
     version: 1.0 
 spec:
   containers:
     - name: test
       image: alpine
-      args:
+      args:   
         - sleep
         - 1d
       env:
