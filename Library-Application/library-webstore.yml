@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: lib-web
+  labels: 
+    app: lib-web
+spec:
+  minReadySeconds: 5
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lib-web
+  template: 
+    metadata:
+      labels:
+        app: lib-web
+    spec:
+      containers:
+        -   name: lib-web
+            image: postgres:15-alpine
+            env:
+              - name: REACT_APP_BACKEND_API_URL
+                value: http://:8000/api/v1
+              - name: REACT_APP_BOOKS_API_URL
+                value: http://books-svc:8000/api/v1/books
+              - name: REACT_APP_USERS_API_URL
+                value: http://user-svc:8000/api/v1/users
+            resources:
+              limits:
+                cpu: 500m
+                memory: 128M
+              requests:
+                cpu: 100m
+                memory: 24M
+            ports:
+              - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: lib-web-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: lib-web
+  ports:
+    - port: 80
+      targetPort: 3000
