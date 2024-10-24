@@ -20,7 +20,7 @@ spec:
             image: shaikkhajaibrahim/libuserssvc:1.0
             env:
               - name: DATABASE_URL
-                value: postgresql://user:password@user-db-svc:5432/
+                value: "postgresql://user:password@user-db:5432/userdb"
               - name: SECRET_KEY
                 value: YtDEVWnL35aAIP-5yxeLjAZ49R920-mMNDfwPyWULu63HFsYzo0f-LO2InxC8eu428k
             resources:
