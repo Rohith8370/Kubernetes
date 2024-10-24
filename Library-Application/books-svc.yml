@@ -17,12 +17,12 @@ spec:
     spec:
       containers:
         -   name: books-svc
-            image: shaikkhajaibrahim/libuserssvc:1.0
+            image: shaikkhajaibrahim/libbookssvc:1.0
             env:
               - name: DATABASE_URL
                 value: "postgresql://user:password@books-db:5432/booksdb"
               - name: SECRET_KEY
-                value: YtDEVWnL35aAIP-5yxeLjAZ49R920-mMNDfwPyWULu63HFsYzo0f-LO2InxC8eu428k
+                value: "YtDEVWnL35aAIP-5yxeLjAZ49R920-mMNDfwPyWULu63HFsYzo0f-LO2InxC8eu428k"
             resources:
               limits:
                 cpu: 500m
@@ -41,7 +41,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: user
+    app: books-svc
   ports:
     - port: 8000
       targetPort: 8000

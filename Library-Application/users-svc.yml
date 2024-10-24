@@ -22,7 +22,7 @@ spec:
               - name: DATABASE_URL
                 value: "postgresql://user:password@user-db:5432/userdb"
               - name: SECRET_KEY
-                value: YtDEVWnL35aAIP-5yxeLjAZ49R920-mMNDfwPyWULu63HFsYzo0f-LO2InxC8eu428k
+                value: "YtDEVWnL35aAIP-5yxeLjAZ49R920-mMNDfwPyWULu63HFsYzo0f-LO2InxC8eu428k"
             resources:
               limits:
                 cpu: 500m
@@ -41,7 +41,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: user
+    app: user-svc
   ports:
     - port: 8000
       targetPort: 8000

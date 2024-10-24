@@ -16,7 +16,7 @@ spec:
         app: user-db
     spec:
       containers:
-        -   name: user-db
+        -   name: userdb
             image: postgres:15-alpine
             env:
               - name: POSTGRES_USER
@@ -39,7 +39,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata: 
-  name: user-db-svc
+  name: user-db
 spec:
   type: ClusterIP
   selector:
