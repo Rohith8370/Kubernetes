@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicaset1
+  labels: 
+    app: svc
+spec:
+  minReadySeconds: 5
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svc
+  template:
+    metadata:
+      labels:
+        app: svc
+        Version: v1.6.9
+    spec:
+      containers:
+      - name: app-svc
+        image: shaikkhajaibrahim/spcjan2024:1.0
+      resources: 
+        requests: 
+          cpu: 100m
+          memory: 128mi
+        limits:
+          cpu: 500m
+          memory: 300mi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+

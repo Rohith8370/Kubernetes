@@ -20,7 +20,7 @@ spec:
             image: postgres:15-alpine
             env:
               - name: REACT_APP_BACKEND_API_URL
-                value: http://:8000/api/v1
+                value: http://user-svc:8000/api/v1
               - name: REACT_APP_BOOKS_API_URL
                 value: http://books-svc:8000/api/v1/books
               - name: REACT_APP_USERS_API_URL
@@ -41,7 +41,7 @@ kind: Service
 metadata: 
   name: lib-web-svc
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: lib-web
   ports:

@@ -1,0 +1,62 @@
+Kubernetes installation 
+
+Create 3 ubuntu machines 
+
+Then name it As 
+
+Master-Node
+Node-1
+Node-2
+
+then install docker on all three nodes 
+
+"curl -fsSL https://get.docker.com -o install-docker.sh
+sh install-docker.sh"
+sudo usermod -aG docker ubuntu
+
+
+
+Install CRI-dockerd on all nodes 
+
+cd /tmp
+wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.15/cri-dockerd_0.3.15.3-0.ubuntu-jammy_amd64.deb
+sudo dpkg -i cri-dockerd_0.3.15.3-0.ubuntu-jammy_amd64.deb
+
+
+Install kubeadm, kubectl, kubelet on all nodes
+
+sudo apt-get update
+# apt-transport-https may be a dummy package; if so, you can skip that package
+sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+sudo systemctl enable --now kubelet
+
+
+Now login into master node and become a root user & initialize the cluster
+kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket "unix:///var/run/cri-dockerd.sock"
+
+Now save Join command & kubectl command 
+
+Then become a normal user in master node and run kubectl command 
+
+**Login into node 1 and execute the join command, Turn into Root user (sudo -i)**
+**  Your system join command > --cri-socket "unix:///var/run/cri-dockerd.sock"   **
+Repeat same on node-2
+
+Now login into node 1 and execute kubectl get nodes
+
+To fix the not ready status, we need to install pod network, lets install flannel on master node,
+
+kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml
+
+to check whether nodes are ready or not, this command shall be executed
+kubectl get nodes.
+
+
+
+
+
