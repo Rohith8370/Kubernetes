@@ -19,7 +19,7 @@ spec:
         -   name: userdb
             image: postgres:15-alpine
             envFrom:
-            -  configMapRef: 
+              - configMapRef: 
                 name: configmap-user-db
             resources:
               limits:

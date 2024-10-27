@@ -19,7 +19,7 @@ spec:
         -   name: booksdb
             image: postgres:15-alpine
             envFrom:
-            -  configMapRef: 
+              - configMapRef: 
                 name: configmap-books-db
             resources:
               limits:
