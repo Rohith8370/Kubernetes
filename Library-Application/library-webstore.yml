@@ -20,7 +20,7 @@ spec:
             image: shaikkhajaibrahim/libwebstore:1.0
             envFrom:
               - secretRef: 
-                name: secret-lib-webstore
+                 name: secret-lib-webstore
             resources:
               limits:
                 cpu: 500m
