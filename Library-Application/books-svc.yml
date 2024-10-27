@@ -16,20 +16,20 @@ spec:
         app: books-svc
     spec:
       containers:
-        -   name: books-svc
-            image: shaikkhajaibrahim/libbookssvc:1.0
-            envFrom:
-              - secretRef: 
-                  name: secret-books-svc
-            resources:
-              limits:
-                cpu: 500m
-                memory: 128M
-              requests:
-                cpu: 100m
-                memory: 24M
-            ports:
-              - containerPort: 8000 
+        - name: books-svc
+          image: shaikkhajaibrahim/libbookssvc:1.0
+          envFrom:
+            - secretRef: 
+               name: secret-books-svc
+          resources:
+            limits:
+              cpu: 500m
+              memory: 128M
+            requests:
+              cpu: 250m
+              memory: 64M
+          ports:
+             - containerPort: 8000 
 
 ---
 apiVersion: v1
