@@ -20,7 +20,7 @@ spec:
             image: postgres:15-alpine
             envFrom:
               - secretRef: 
-                name: configmap-books-db
+                name: secret-books-db
             resources:
               limits:
                 cpu: 500m

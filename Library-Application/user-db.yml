@@ -20,7 +20,7 @@ spec:
             image: postgres:15-alpine
             envFrom:
               - secretRef: 
-                name: configmap-user-db
+                name: secret-user-db
             resources:
               limits:
                 cpu: 500m
