@@ -20,7 +20,7 @@ spec:
             image: shaikkhajaibrahim/libuserssvc:1.0
             envFrom:
             -  configMapRef: 
-                name: ConfigMap-users-svc
+                name: configmap-users-svc
             resources:
               limits:
                 cpu: 500m

@@ -20,7 +20,7 @@ spec:
             image: shaikkhajaibrahim/libbookssvc:1.0
             envFrom:
             -  configMapRef: 
-                name:ConfigMap-books-svc
+                name:configmap-books-svc
             resources:
               limits:
                 cpu: 500m

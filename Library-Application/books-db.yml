@@ -20,7 +20,7 @@ spec:
             image: postgres:15-alpine
             envFrom:
             -  configMapRef: 
-                name: ConfigMap-books-db
+                name: configmap-books-db
             resources:
               limits:
                 cpu: 500m

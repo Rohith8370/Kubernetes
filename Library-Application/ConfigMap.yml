@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: 	ConfigMap
 metadata: 
-  name: ConfigMap-books-db
+  name: configmap-books-db
 data: 
     POSTGRES_USER: user
     POSTGRES_PASSWORD: password
@@ -11,7 +11,7 @@ data:
 apiVersion: v1
 kind: 	ConfigMap
 metadata: 
-  name: ConfigMap-user-db
+  name: configmap-user-db
 data: 
     POSTGRES_USER: user
     POSTGRES_PASSWORD: password
@@ -20,7 +20,7 @@ data:
 apiVersion: v1
 kind: 	ConfigMap
 metadata: 
-  name: ConfigMap-books-svc
+  name: configmap-books-svc
 data: 
     DATABASE_URL: "postgresql://user:password@books-db:5432/booksdb"
     SECRET_KEY: "YtDEVWnL35aAIP-5yxeLjAZ49R920-mMNDfwPyWULu63HFsYzo0f-LO2InxC8eu428k"
@@ -28,7 +28,7 @@ data:
 apiVersion: v1
 kind: 	ConfigMap
 metadata: 
-  name: ConfigMap-users-svc
+  name: configmap-users-svc
 data: 
     DATABASE_URL: "postgresql://user:password@user-db:5432/userdb"
     SECRET_KEY: "YtDEVWnL35aAIP-5yxeLjAZ49R920-mMNDfwPyWULu63HFsYzo0f-LO2InxC8eu428k"
@@ -36,7 +36,7 @@ data:
 apiVersion: v1
 kind: 	ConfigMap
 metadata: 
-  name: ConfigMap-lib-webstore
+  name: configmap-lib-webstore
 data: 
     REACT_APP_BACKEND_API_URL: http://user-svc:8000/api/v1
     REACT_APP_BOOKS_API_URL: http://books-svc:8000/api/v1/books

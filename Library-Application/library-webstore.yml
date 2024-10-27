@@ -20,7 +20,7 @@ spec:
             image: shaikkhajaibrahim/libwebstore:1.0
             envFrom:
             -  configMapRef: 
-                name: ConfigMap-lib-webstore
+                name: configmap-lib-webstore
             resources:
               limits:
                 cpu: 500m
