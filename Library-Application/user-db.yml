@@ -18,13 +18,9 @@ spec:
       containers:
         -   name: userdb
             image: postgres:15-alpine
-            env:
-              - name: POSTGRES_USER
-                value: user
-              - name: POSTGRES_PASSWORD
-                value: password
-              - name: POSTGRES_DB
-                value: userdb
+            envFrom:
+            -  configMapRef: 
+                name: ConfigMap-user-db
             resources:
               limits:
                 cpu: 500m

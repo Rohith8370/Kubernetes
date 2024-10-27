@@ -18,13 +18,9 @@ spec:
       containers:
         -   name: booksdb
             image: postgres:15-alpine
-            env:
-              - name: POSTGRES_USER
-                value: user
-              - name: POSTGRES_PASSWORD
-                value: password
-              - name: POSTGRES_DB
-                value: booksdb
+            envFrom:
+            -  configMapRef: 
+                name: ConfigMap-books-db
             resources:
               limits:
                 cpu: 500m
