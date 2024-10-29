@@ -27,9 +27,9 @@ spec:
               memory: 128M
             requests:
               cpu: 100m
-              memory: 24M
+              memory: 64M
           ports:
-            - containerPort: 8000 
+            - containerPort: 8000
 ---
 apiVersion: v1
 kind: Service
@@ -40,5 +40,5 @@ spec:
   selector:
     app: user-svc
   ports:
-    - port: 8000
-      targetPort: 8000
+    - port: 8080
+      targetPort: 8080
