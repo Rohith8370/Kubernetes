@@ -26,8 +26,6 @@ spec:
               memory: 128M
               cpu: 500m
           envFrom:
-            # - configMapRef:
-            #     name: users-svc-config
             - secretRef:
                 name: secret-users-svc
           ports:

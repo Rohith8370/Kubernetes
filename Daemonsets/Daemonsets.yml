@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: demonset
+spec: 
+  minReadySeconds: 5
+  selector:
+    matchLabels:
+      name: demonset
+  template:
+    metadata:
+      name: demonset-pd
+      labels: 
+        name: demonset
+        
+    spec:
+      containers:
+        - name: fluentd
+          image: fluent/fluentd:v1.17-debian-1
+          resources: 
+            limits:
+              cpu: 250m
+              memory: 128M
+            requests: 
+              cpu: 100m
+              memory: 64M
+          ports:
+            - containerPort: 9880     
+ 
