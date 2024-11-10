@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: {{ .Values.namespace }}
+  labels: {{ .Values.lables| toYaml | nindent 2}}
+spec: {{ .Values.spec | toYaml | nindent 4}}
+  selector:
+    matchLabels: {{ .Values.lables| toYaml | nindent 6}}
+  template:
+    metadata:  {{ .Values.lables| toYaml | nindent 8}}
+        Version: 
+    spec:
+      containers:
+      - name: {{ .Release.Namespace }} app-svc
+        image: shaikkhajaibrahim/spcjan2024:1.0
+      resources: 
+        requests: 
+          cpu: 100m
+          memory: 128mi
+        limits:
+          cpu: 500m
+          memory: 300mi
+        ports:
+        - containerPort: {{ .Values.chart }}
+          protocol: TCP
+        args: {{ .Values.val| toYaml | nindent 8}}

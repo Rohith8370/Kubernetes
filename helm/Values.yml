@@ -1,0 +1,11 @@
+---
+namespace: replicaset1
+chart: 8080
+lables:
+  app: svc
+spec: 
+  minReadySeconds: 3
+  replicas: 1
+val:
+  - sleep
+  - 10s

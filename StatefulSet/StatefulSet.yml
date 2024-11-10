@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+spec: 
+  # minReadySeconds: 3
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  serviceName: mysql
+  template: 
+    metadata:
+      name: statefulset-pod
+      labels:
+        app: mysql
+    spec: 
+      containers:
+        - name: postgres
+          image: postgres:15-alpine
+          env:
+            - name: POSTGRES_USER
+              value: "username"
+            - name: POSTGRES_PASSWORD
+              value: "password"
+            - name: POSTGRES_DB
+              value: userdb
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: mysql
+              mountPath: /var/lib/postgresql/data
+              subPath: data
+  volumeClaimTemplates: 
+    - metadata:
+        name: mysql
+      spec: 
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: managed
+        resources: 
+          requests:
+            storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  type: ClusterIP
+  clusterIP: None
+  selector:
+    app: mysql
+  ports:
+     - port: 5432
+       targetPort: 5432
+
+            
+
+
