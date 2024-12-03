@@ -8,20 +8,13 @@ spec: {{ .Values.spec | toYaml | nindent 4}}
   selector:
     matchLabels: {{ .Values.lables| toYaml | nindent 6}}
   template:
-    metadata:  {{ .Values.lables| toYaml | nindent 8}}
-        Version: 
+    metadata:  {{ .Values.lables| toYaml | nindent 8}} 
     spec:
       containers:
-      - name: {{ .Release.Namespace }} app-svc
-        image: shaikkhajaibrahim/spcjan2024:1.0
-      resources: 
-        requests: 
-          cpu: 100m
-          memory: 128mi
-        limits:
-          cpu: 500m
-          memory: 300mi
-        ports:
+      - name: {{ .Values.namespace }} app-svc
+        image: {{ .Values.image }}
+      resources: {{ .Values.res | toYaml | nindent 8 }}
+      ports:
         - containerPort: {{ .Values.chart }}
-          protocol: TCP
+          protocol: {{ .Values.protocol }}
         args: {{ .Values.val| toYaml | nindent 8}}

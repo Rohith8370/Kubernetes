@@ -1,0 +1,28 @@
+---
+name: books-svc
+namespace: 
+  app: books-svc
+spec:
+  minReadySeconds: 5
+  replicas: 1
+spec_pod: 
+  automountServiceAccountToken: false
+containers:
+  - name: books-service
+    image: shaikkhajaibrahim/libbookssvc:1.0
+resources:
+  limits:
+    cpu: 500m
+    memory: 128M
+  requests:
+    cpu: 100m
+    memory: 24M
+ports:
+  - containerPort: 8000
+secretRef:
+  name: secret-books-svc
+spec_svc: 
+  type: ClusterIP
+ports_svc: 
+  - port: 8000
+    targetPort: 8000

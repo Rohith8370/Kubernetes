@@ -1,0 +1,49 @@
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: {{ .books-dbvalues.name }}
+spec:
+  {{ .books-dbvalues.spec-svc  }}
+  selector:
+    {{ .books-dbvalues.namespace | toYaml }}
+  ports:
+    {{ .books-dbvalues.ports  }}
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: {{.books-svcvalues.name  }}
+spec:
+  {{  .books-svcvalues.spec_svc | toYaml }}
+  selector: {{ .books-svcvalues.namespace | toYaml | nindent 4 }}
+  ports: {{  .books-svcvalues.ports_svc | toYaml | nindent 4}}
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: {{ .lib-webstorevalues.name_svc | toYaml }}
+spec: {{ .lib-webstorevalues.spec_svc | toYaml | nindent 4 }}
+  selector: {{ .lib-webstorevalues.namespace | toYaml | nindent 4 }}
+  ports: {{ .lib-webstorevalues.ports_svc | toYaml | nindent 4 }}
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: {{ .user-dbvalues.name }}
+spec:
+  {{ .user-dbvalues.spec-svc  }}
+  selector:
+    {{ .user-dbvalues.namespace | toYaml }}
+  ports:
+    {{ .user-dbvalues.ports  }}
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: {{.user-svcvalues.name  }}
+spec:
+  {{  .user-svcvalues.spec_svc | toYaml }}
+  selector: {{ .user-svcvalues.namespace | toYaml | nindent 4 }}
+  ports: {{  .user-svcvalues.ports_svc | toYaml | nindent 4}}
+ 

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: {{  .books-svcvalues.name  }}
+  labels: 
+     {{  .books-svcvalues.namespace | toYaml  }}
+spec: {{  .books-svcvalues.spec | toYaml | nindent 2}}
+  selector:
+    matchLabels:
+      {{  .books-svcvalues.namespace | toYaml  }}
+  template: 
+    metadata:
+      labels:
+        {{  .books-svcvalues.namespace | toYaml |   }}
+    spec:
+      {{  .books-svcvalues.spec_pod | toYaml  }}
+      containers: {{  .books-svcvalues.containers | toYaml | nindent 8  }}
+          resources: {{  .books-svcvalues.resources | toYaml | nindent 12 }}
+          envFrom:
+            - secretRef: {{  .books-svcvalues.secretRef | toYaml | nindent 16 }}
+          ports: {{  .books-svcvalues.ports | toYaml | nindent 12 }}

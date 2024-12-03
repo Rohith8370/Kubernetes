@@ -1,0 +1,25 @@
+---
+name: lib-web
+namespace: 
+  app: lib-web
+spec:
+  minReadySeconds: 5
+  replicas: 1
+image: shaikkhajaibrahim/libwebstore:1.0
+secretRef: 
+  name : secret-lib-webstore
+resources:
+  limits:
+    cpu: 500m
+    memory: 128M
+  requests:
+    cpu: 100m
+    memory: 24M
+ports:
+  - containerPort: 3000
+name_svc: lib-web-svc
+spec_svc: 
+  type: LoadBalancer
+ports_svc: 
+  - port: 80
+    targetPort: 3000

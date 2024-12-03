@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: {{ .lib-webstorevalues.name }}
+  labels: {{ .lib-webstorevalues.namespace | toYaml | nindent 4 }}
+spec: {{ .lib-webstorevalues.spec | toYaml | nindent 4  }}
+  selector:
+    matchLabels: {{ .lib-webstorevalues.namespace | toYaml | nindent 6 }}
+  template: 
+    metadata:
+      labels:
+       {{ .lib-webstorevalues.namespace | toYaml  }}
+    spec:
+      containers:
+        -   name: {{ .lib-webstorevalues.name }}
+            image: {{ .lib-webstorevalues.image }}
+            envFrom:
+              - secretRef: 
+                  {{ .lib-webstorevalues.secretRef | toYaml }}
+            resources: {{ .lib-webstorevalues.resources | toYaml | nindent 14 }}
+            ports: {{ .lib-webstorevalues.ports | toYaml | nindent 14 }}

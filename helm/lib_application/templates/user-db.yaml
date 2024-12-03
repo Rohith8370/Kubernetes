@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: {{ .user-dbvalues.name }}
+  labels: 
+     {{ .user-dbvalues.namespace | toYaml }}
+spec:
+  {{ .user-dbvalues.spec-pod | toYaml  }}
+  selector:
+    matchLabels:
+      {{ .user-dbvalues.namespace | toYaml }}
+  template: 
+    metadata:
+      labels:
+        {{ .user-dbvalues.namespace | toYaml }}
+    spec: {{ .user-dbvalues.spec-pod |toYaml | nindent 6  }}
+      containers:
+        -   name: {{ .user-dbvalues.name }}
+            image: {{ .user-dbvalues.image }}
+            envFrom:
+              - secretRef: 
+                {{ .user-dbvalues.secretRef | toYaml }}
+            resources: {{ .user-dbvalues.resources | toYaml | nindent 14  }}
+            ports: {{ .user-dbvalues.ports | toYaml | nindent 14  }} 
+

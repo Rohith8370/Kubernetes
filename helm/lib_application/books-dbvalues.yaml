@@ -1,0 +1,26 @@
+---
+name: books-db
+namespace: 
+  app: books-db
+spec:
+  minReadySeconds: 5
+  replicas: 1
+spec-pod: 
+  automountServiceAccountToken: false
+image: postgres:15-alpine
+secretRef: 
+  name : secret-books-db
+resources:
+  limits:
+    cpu: 500m
+    memory: 128M
+  requests:
+    cpu: 100m
+    memory: 24M
+ports:
+  - containerPort: 5432
+spec-svc: 
+  type: ClusterIP
+ports-svc: 
+  - port: 5432
+    targetPort: 5432

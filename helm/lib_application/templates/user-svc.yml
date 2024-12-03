@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: {{  .user-svcvalues.name  }}
+  labels: 
+     {{  .user-svcvalues.namespace | toYaml  }}
+spec: {{  .user-svcvalues.spec | toYaml | nindent 2}}
+  selector:
+    matchLabels:
+      {{  .user-svcvalues.namespace | toYaml  }}
+  template: 
+    metadata:
+      labels:
+        {{  .user-svcvalues.namespace | toYaml |   }}
+    spec:
+      {{  .user-svcvalues.spec_pod | toYaml  }}
+      containers: {{  .user-svcvalues.containers | toYaml | nindent 8  }}
+          resources: {{  .user-svcvalues.resources | toYaml | nindent 12 }}
+          envFrom:
+            - secretRef: {{  .user-svcvalues.secretRef | toYaml | nindent 16 }}
+          ports: {{  .user-svcvalues.ports | toYaml | nindent 12 }}

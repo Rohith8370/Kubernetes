@@ -1,0 +1,28 @@
+---
+name_1: configmap-books-db
+data_booksdb: 
+   POSTGRES_USER: user
+   POSTGRES_PASSWORD: password
+   POSTGRES_DB: booksdb
+  
+name_2: configmap-user-db
+data_userdb: 
+    POSTGRES_USER: user
+    POSTGRES_PASSWORD: password
+    POSTGRES_DB: userdb
+    
+name_3: configmap-books-svc
+data_books_svc:
+    DATABASE_URL: "postgresql://user:password@books-db:5432/booksdb"
+    SECRET_KEY: "YtDEVWnL35aAIP-5yxeLjAZ49R920-mMNDfwPyWULu63HFsYzo0f-LO2InxC8eu428k"
+    
+name_4: configmap-user-svc
+data_user_svc:
+    DATABASE_URL: "postgresql://user:password@user-db:5432/userdb"
+    SECRET_KEY: "YtDEVWnL35aAIP-5yxeLjAZ49R920-mMNDfwPyWULu63HFsYzo0f-LO2InxC8eu428k"
+
+name_5: configmap-lib-webstore
+data_lib_webstore:
+    REACT_APP_BACKEND_API_URL: http://user-svc:8000/api/v1
+    REACT_APP_BOOKS_API_URL: http://books-svc:8000/api/v1/books
+    REACT_APP_USERS_API_URL: http://user-svc:8000/api/v1/users

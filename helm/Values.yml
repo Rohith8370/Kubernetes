@@ -9,3 +9,12 @@ spec:
 val:
   - sleep
   - 10s
+res:
+   requests: 
+     cpu: 100m
+     memory: 128mi
+   limits:
+     cpu: 500m
+     memory: 300mi
+image: shaikkhajaibrahim/spcjan2024:1.0
+protocol: TCP

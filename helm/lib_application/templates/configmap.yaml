@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: 	ConfigMap
+metadata: 
+  name: {{ .configmapvalues.name_1 }}
+data: {{  .configmapvalues.data_booksdb | toYaml | nindent 4 }}
+   
+---
+apiVersion: v1
+kind: 	ConfigMap
+metadata: 
+  name: {{ .configmapvalues.name_2 }}
+data: {{  .configmapvalues.data_userdb | toYaml | nindent 4 }}
+    
+---
+apiVersion: v1
+kind: 	ConfigMap
+metadata: 
+  name: {{ .configmapvalues.name_3 }}
+data: {{  .configmapvalues.data_books_svc | toYaml | nindent 4 }}
+    
+---
+apiVersion: v1
+kind: 	ConfigMap
+metadata: 
+  name: {{ .configmapvalues.name_4 }}
+data: {{  .configmapvalues.data_user_svc | toYaml | nindent 4 }}
+---
+apiVersion: v1
+kind: 	ConfigMap
+metadata: 
+  name: {{ .configmapvalues.name_5 }}
+data:  {{  .configmapvalues.data_lib_webstore | toYaml | nindent 4 }}
+
+
+
+

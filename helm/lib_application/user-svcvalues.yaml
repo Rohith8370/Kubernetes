@@ -1,0 +1,28 @@
+---
+name: user-svc
+namespace: 
+  app: user-svc
+spec:
+  minReadySeconds: 5
+  replicas: 1
+spec_pod: 
+  automountServiceAccountToken: false
+containers:
+  - name: user-service
+    image: shaikkhajaibrahim/libusersvc:1.0
+resources:
+  limits:
+    cpu: 500m
+    memory: 128M
+  requests:
+    cpu: 100m
+    memory: 24M
+ports:
+  - containerPort: 8000
+secretRef:
+  name: secret-user-svc
+spec_svc: 
+  type: ClusterIP
+ports_svc: 
+  - port: 8000
+    targetPort: 8000

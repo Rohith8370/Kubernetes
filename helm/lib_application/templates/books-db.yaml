@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: {{ .books-dbvalues.name }}
+  labels: 
+     {{ .books-dbvalues.namespace | toYaml }}
+spec:
+  {{ .books-dbvalues.spec-pod | toYaml  }}
+  selector:
+    matchLabels:
+      {{ .books-dbvalues.namespace | toYaml }}
+  template: 
+    metadata:
+      labels:
+        {{ .books-dbvalues.namespace | toYaml }}
+    spec: {{ .books-dbvalues.spec-pod |toYaml | nindent 6  }}
+      containers:
+        -   name: {{ .books-dbvalues.name }}
+            image: {{ .books-dbvalues.image }}
+            envFrom:
+              - secretRef: 
+                {{ .books-dbvalues.secretRef | toYaml }}
+            resources: {{ .books-dbvalues.resources | toYaml | nindent 14  }}
+            ports: {{ .books-dbvalues.ports | toYaml | nindent 14  }} 
+                
+
+---
