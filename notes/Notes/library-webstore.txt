@@ -1,0 +1,47 @@
+library-webstore:
+
+shaikkhajaibrahim/libwebstore:1.0
+
+REACT_APP_BACKEND_API_URL: http://user-svc:8000/api/v1
+    REACT_APP_BOOKS_API_URL: http://books-svc:8000/api/v1/books
+    REACT_APP_USERS_API_URL: http://user-svc:8000/api/v1/users
+
+user-svc:
+
+shaikkhajaibrahim/libuserssvc:1.0
+
+data: 
+    DATABASE_URL: "postgresql://user:password@user-db:5432/userdb"
+    SECRET_KEY: "YtDEVWnL35aAIP-5yxeLjAZ49R920-mMNDfwPyWULu63HFsYzo0f-LO2InxC8eu428k"
+
+
+userdb:
+
+postgres:15-alpine
+
+data: 
+    POSTGRES_USER: user
+    POSTGRES_PASSWORD: password
+    POSTGRES_DB: userdb
+
+books-svc:
+
+shaikkhajaibrahim/libbookssvc:1.0
+
+data: 
+    DATABASE_URL: "postgresql://user:password@books-db:5432/booksdb"
+    SECRET_KEY: "YtDEVWnL35aAIP-5yxeLjAZ49R920-mMNDfwPyWULu63HFsYzo0f-LO2InxC8eu428k"
+
+
+booksdb:
+
+postgres:15-alpine
+
+data:
+
+    POSTGRES_USER: user
+    POSTGRES_PASSWORD: password
+    POSTGRES_DB: booksdb
+
+
+
